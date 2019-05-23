@@ -95,12 +95,12 @@ while (curbYRed < 800) {
     fill("blue");
     autoX = mouseX;
 
-    var maxRechts = width - CurbSize - AUTOBREEDTE;
+    var maxRechts = width - CurbSize - 0.5 * AUTOBREEDTE;
         if (autoX >= maxRechts) {
         autoX = maxRechts;
     }
 
-    var maxLinks = 0 + CurbSize + AUTOBREEDTE;
+    var maxLinks = 0 + CurbSize + 0.5 * AUTOBREEDTE;
         if (autoX <= maxLinks){
             autoX = maxLinks;
         }

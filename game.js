@@ -1,3 +1,9 @@
+const AUTOBREEDTE = 100;
+const AUTOLENGTE = 170;
+const CURBSIZE = 40;
+
+var autoX = 200;
+
 function setup() {
     createCanvas(600,800);
     background("blue");
@@ -15,8 +21,8 @@ function draw() {
     // Witte curbs
     while (curbYWhite < 800) {
         fill("white");
-        rect(0,curbYWhite,40,40);
-        rect(560,curbYWhite,40,40);
+        rect(0,curbYWhite,CURBSIZE,CURBSIZE);
+        rect(560,curbYWhite,CURBSIZE, CURBSIZE);
 
         curbYWhite = curbYWhite + 80;
     };
@@ -31,11 +37,22 @@ function draw() {
     };
 
     fill("blue");
-    rect(mouseX, 600, 100, 170);
+    autoX = mouseX;
+
+    var maxRechts = width - CURBSIZE - AUTOBREEDTE;
+    if (autoX >= maxRechts) {
+        autoX = maxRechts;
+    }
+
+    rect(autoX, 600, AUTOBREEDTE, 170);
     
+
+
     var beweging = 0;
     
     fill("black");
     rect(200, beweging, 80, 120);
 
 };
+
+

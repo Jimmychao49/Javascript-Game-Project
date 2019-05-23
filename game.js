@@ -105,6 +105,6 @@ while (curbYRed < 800) {
             autoX = maxLinks;
         }
 
-    rect(autoX,600,AUTOBREEDTE,AUTOLENGTE);
+    rect(autoX - CurbSize,600,AUTOBREEDTE,AUTOLENGTE);
 
 }

@@ -1,58 +1,110 @@
-const AUTOBREEDTE = 100;
-const AUTOLENGTE = 170;
-const CURBSIZE = 40;
+const AUTOBREEDTE = 80;
+const AUTOLENGTE = 120;
 
-var autoX = 200;
+var autoX = 300;
+var enemies = [];
+var carlines = [];
+var curbWs = [];
+var curbRs = [];
 
 function setup() {
     createCanvas(600,800);
-    background("blue");
+
+    //Object Generator
+    for (var i = 0; i < 3; i++) {
+        enemies.push(new Enemy());
+    }
+
+    for (var l = 0; l < 1; l++) {
+        carlines.push(new Carline());
+    }
+
+    for (var m = 0; m < 10; m++) {
+        curbWs.push(new CurbW());
+    }
+
+    for (var o = 0; o < 10; o++) {
+        curbRs.push(new CurbR());
+    }
+
 }
 
 function draw() {
+    background("black");
 
-    // background
-    background("gray");
-    
-    // curbs zijkanten
-    var curbYWhite = 0;
-    var curbYRed = 40;
+    //Road Line
+    for (var k = 0; k < carlines.length; k++) {
+        
+        if (carlines[k].y > 840) {
+            carlines.splice(k, 1, new Carline());
+        }
+    carlines[k].display();
+    carlines[k].update();
+    }
 
-    // Witte curbs
-    while (curbYWhite < 800) {
-        fill("white");
-        rect(0,curbYWhite,CURBSIZE,CURBSIZE);
-        rect(560,curbYWhite,CURBSIZE, CURBSIZE);
+    //Enemy
+    for (var j = 0; j < enemies.length; j++) {
+        if (enemies[j].y > 840) {
+            enemies.splice(j, 1, new Enemy());
+        }
+    enemies[j].display();
+    enemies[j].update();
+    }
 
-        curbYWhite = curbYWhite + 80;
-    };
+    //White Curbs
+    for (var n = 0; n < curbWs.length; n++) {
+        if (curbWs[n].y > 840) {
+            curbWs.splice(n, 1, new CurbW());
+        }
+    curbWs[n].display();
+    curbWs[n].update();
+    }
 
-    // Rode curbs
-    while (curbYRed < 800) {
-        fill("red");
-        rect(0,curbYRed,40,40);
-        rect(560,curbYRed,40,40);
+    //Red Curbs
+    for (var p = 0; p < curbRs.length; p++) {
+        if (curbRs[p].y > 840) {
+            curbRs.splice(p, 1, new CurbR());
+        }
+    curbRs[p].display();
+    curbRs[p].update();
+    }
 
-        curbYRed = curbYRed + 80;
-    };
+// curbs zijkanten
+var curbYWhite = 0;
+var curbYRed = CurbSize;
+
+// Witte curbs
+while (curbYWhite < 800) {
+    fill("white");
+    rect(0,curbYWhite,CurbSize,CurbSize);
+    rect(560,curbYWhite,CurbSize,CurbSize);
+
+    curbYWhite = curbYWhite + 80;
+};
+
+// Rode curbs
+while (curbYRed < 800) {
+    fill("red");
+    rect(0,curbYRed,CurbSize,CurbSize);
+    rect(560,curbYRed,CurbSize,CurbSize);
+
+    curbYRed = curbYRed + 80;
+};
+
 
     fill("blue");
     autoX = mouseX;
 
-    var maxRechts = width - CURBSIZE - AUTOBREEDTE;
-    if (autoX >= maxRechts) {
+    var maxRechts = width - CurbSize - 0.5 * AUTOBREEDTE;
+        if (autoX >= maxRechts) {
         autoX = maxRechts;
     }
 
-    rect(autoX, 600, AUTOBREEDTE, 170);
-    
+    var maxLinks = 0 + CurbSize + 0.5 * AUTOBREEDTE;
+        if (autoX <= maxLinks){
+            autoX = maxLinks;
+        }
 
+    rect(autoX - CurbSize,600,AUTOBREEDTE,AUTOLENGTE);
 
-    var beweging = 0;
-    
-    fill("black");
-    rect(200, beweging, 80, 120);
-
-};
-
-
+}

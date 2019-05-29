@@ -1,4 +1,4 @@
-const CurbSize = 40;
+const CURBSIZE = 40;
 
 class CurbW {
 
@@ -15,8 +15,8 @@ class CurbW {
     display() {
         fill(255,255,255);
         noStroke();
-        rect(this.x, this.y, CurbSize, CurbSize);
-        rect(this.x + 560, this.y, CurbSize, CurbSize)
+        rect(this.x, this.y, CURBSIZE, CURBSIZE);
+        rect(this.x + 560, this.y, CURBSIZE, CURBSIZE)
     }
 }
 
@@ -34,8 +34,8 @@ class CurbR {
 
     display() {
         fill(255,0,0);
-        rect(this.x, this.y + 40 , CurbSize, CurbSize);
-        rect(this.x + 560, this.y + 40 , CurbSize, CurbSize);
+        rect(this.x, this.y + 40 , CURBSIZE, CURBSIZE);
+        rect(this.x + 560, this.y + 40 , CURBSIZE, CURBSIZE);
         }
         
 }

@@ -10,8 +10,8 @@ var curbRs = [];
 function setup() {
     createCanvas(600,800);
 
-    //Object Generator
-    for (var i = 0; i < 3; i++) {
+     //Object Generator
+     for (var i = 0; i < 3; i++) {
         enemies.push(new Enemy());
     }
 
@@ -71,13 +71,13 @@ function draw() {
 
 // curbs zijkanten
 var curbYWhite = 0;
-var curbYRed = CurbSize;
+var curbYRed = CURBSIZE;
 
 // Witte curbs
 while (curbYWhite < 800) {
     fill("white");
-    rect(0,curbYWhite,CurbSize,CurbSize);
-    rect(560,curbYWhite,CurbSize,CurbSize);
+    rect(0,curbYWhite,CURBSIZE,CURBSIZE);
+    rect(560,curbYWhite,CURBSIZE,CURBSIZE);
 
     curbYWhite = curbYWhite + 80;
 };
@@ -85,8 +85,8 @@ while (curbYWhite < 800) {
 // Rode curbs
 while (curbYRed < 800) {
     fill("red");
-    rect(0,curbYRed,CurbSize,CurbSize);
-    rect(560,curbYRed,CurbSize,CurbSize);
+    rect(0,curbYRed,CURBSIZE,CURBSIZE);
+    rect(560,curbYRed,CURBSIZE,CURBSIZE);
 
     curbYRed = curbYRed + 80;
 };
@@ -95,16 +95,16 @@ while (curbYRed < 800) {
     fill("blue");
     autoX = mouseX;
 
-    var maxRechts = width - CurbSize - 0.5 * AUTOBREEDTE;
+    var maxRechts = width - CURBSIZE - 0.5 * AUTOBREEDTE;
         if (autoX >= maxRechts) {
         autoX = maxRechts;
     }
 
-    var maxLinks = 0 + CurbSize + 0.5 * AUTOBREEDTE;
+    var maxLinks = 0 + CURBSIZE + 0.5 * AUTOBREEDTE;
         if (autoX <= maxLinks){
             autoX = maxLinks;
         }
 
-    rect(autoX - CurbSize,600,AUTOBREEDTE,AUTOLENGTE);
+    rect(autoX - CURBSIZE,600,AUTOBREEDTE,AUTOLENGTE);
 
 }

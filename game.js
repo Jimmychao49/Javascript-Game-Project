@@ -1,5 +1,16 @@
+const FRAMERATE = 30;
+
+const GAMESTATUS_STARTSCHERM = 0;
+const GAMESTATUS_AFTELLEN = 1;
+const GAMESTATUS_SPEL = 2;
+const GAMESTATUS_EINDSCHERM = 3;
+
 const AUTOBREEDTE = 80;
 const AUTOLENGTE = 120;
+
+var gameStatus;
+var aftelgetal = 3;
+var aftelgetalhulp = 0;
 
 var autoX = 300;
 var enemies = [];
@@ -9,6 +20,11 @@ var curbRs = [];
 
 function setup() {
     createCanvas(600,800);
+
+    // aantal frames per seconde
+    frameRate(FRAMERATE);
+
+    gameStatus = GAMESTATUS_STARTSCHERM;
 
     //Object Generator
     for (var i = 0; i < 3; i++) {
@@ -31,6 +47,21 @@ function setup() {
 
 function draw() {
     background("black");
+    
+    // *********************************
+    // ********** beginscherm **********
+    // *********************************
+    
+    if (gameStatus = GAMESTATUS_STARTSCHERM) {
+        textSize = 50;
+        fill(255, 255, 255);
+        text('Klik om te starten', 300, 400);
+        
+        if (mouseIsPressed) {
+            gameStatus = GAMESTATUS_AFTELLEN;
+        };
+    };
+
 
     //Road Line
     for (var k = 0; k < carlines.length; k++) {

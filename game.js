@@ -9,8 +9,8 @@ const AUTOBREEDTE = 80;
 const AUTOLENGTE = 120;
 
 var gameStatus;
-var aftelgetal = 3;
-var aftelgetalhulp = 0;
+var aftelGetal = 5;
+var aftelHulp = 0;
 
 var autoX = 300;
 var enemies = [];
@@ -59,10 +59,24 @@ function draw() {
         
         if (mouseIsPressed) {
             gameStatus = GAMESTATUS_AFTELLEN;
+            aftelGetal = 5;
+            aftelHulp = 0;
         };
     };
 
 
+    // *********************************
+    // ********** aftellen **********
+    // *********************************
+
+    else if (gameStatus === GAMESTATUS_AFTELLEN) {
+        //tekenen van de instructie
+        textSize(40);
+        fill(255, 255, 255);
+        text("Ontwijk de auto's", 200, 75);
+
+        //tekenen van het aftelGetal
+    }
     //Road Line
     for (var k = 0; k < carlines.length; k++) {
         

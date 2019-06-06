@@ -71,11 +71,22 @@ function draw() {
 
     else if (gameStatus === GAMESTATUS_AFTELLEN) {
         //tekenen van de instructie
+        background(white);
         textSize(40);
         fill(255, 255, 255);
         text("Ontwijk de auto's", 200, 75);
 
-        //tekenen van het aftelGetal
+        //tekenen van de lichten
+        while (aftelGetal > 0) {
+            fill(255, 20, 20);
+            ellipse(50, 50, 50, 50);
+        };
+
+        aftelHulp++;
+
+        if (aftelHulp % FRAMERATE === 0) {
+            aftelgetal
+        }
     }
     //Road Line
     for (var k = 0; k < carlines.length; k++) {

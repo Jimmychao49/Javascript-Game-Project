@@ -12,15 +12,16 @@ function setup() {
 
     //Object Generator
     for (var i = 0; i < 3; i++) {
-        enemies.push(new Enemy());
+        var nieuweVijand = getNewEnemy();
+        enemies.push(nieuweVijand);
     }
 
     for (var l = 0; l < 1; l++) {
         carlines.push(new Carline());
     }
 
-    for (var m = 0; m < 10; m++) {
-        curbWs.push(new CurbW());
+    for (var m = 0; m < 15; m++) {
+        
     }
 
     for (var o = 0; o < 10; o++) {
@@ -42,10 +43,28 @@ function draw() {
     carlines[k].update();
     }
 
+    for (var k = 0; k < carlines.length; k++) {
+        
+        if (carlines[k].y > 840) {
+            carlines.splice(k, 1, new Carline());
+        }
+    carlines[k].display();
+    carlines[k].update();
+    }
+
+    for (var k = 0; k < carlines.length; k++) {
+        
+        if (carlines[k].y > 840) {
+            carlines.splice(k, 1, new Carline());
+        }
+    carlines[k].display();
+    carlines[k].update();
+    }
+
     //Enemy
     for (var j = 0; j < enemies.length; j++) {
         if (enemies[j].y > 840) {
-            enemies.splice(j, 1, new Enemy());
+            enemies.splice(j, 1, getNewEnemy());
         }
     enemies[j].display();
     enemies[j].update();
@@ -60,6 +79,7 @@ function draw() {
     curbWs[n].update();
     }
 
+
     //Red Curbs
     for (var p = 0; p < curbRs.length; p++) {
         if (curbRs[p].y > 840) {
@@ -69,27 +89,12 @@ function draw() {
     curbRs[p].update();
     }
 
+
 // curbs zijkanten
 var curbYWhite = 0;
 var curbYRed = CurbSize;
 
-// Witte curbs
-while (curbYWhite < 800) {
-    fill("white");
-    rect(0,curbYWhite,CurbSize,CurbSize);
-    rect(560,curbYWhite,CurbSize,CurbSize);
 
-    curbYWhite = curbYWhite + 80;
-};
-
-// Rode curbs
-while (curbYRed < 800) {
-    fill("red");
-    rect(0,curbYRed,CurbSize,CurbSize);
-    rect(560,curbYRed,CurbSize,CurbSize);
-
-    curbYRed = curbYRed + 80;
-};
 
 
     fill("blue");
@@ -107,4 +112,29 @@ while (curbYRed < 800) {
 
     rect(autoX - CurbSize,600,AUTOBREEDTE,AUTOLENGTE);
 
+}
+
+function enemyCanCollide(enemy) {
+    var canCollide = false;
+    for (var i = 0; i < enemies.length; i++) {
+        if (enemy.x <= enemies[i].x + enemyWidth &&
+            enemy.x >= enemies[i].x - enemyWidth) {
+            canCollide = true;
+        }
+    }
+
+    return canCollide;
+}
+
+
+
+function getNewEnemy() {
+    var nieuweVijand = new Enemy();
+    var collision = enemyCanCollide(nieuweVijand);
+    while (collision === true) {
+        nieuweVijand.getRandomX();
+        collision = enemyCanCollide(nieuweVijand);
+    }
+
+    return nieuweVijand;
 }
